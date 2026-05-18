@@ -1,0 +1,40 @@
+{{- $isManjaro := eq .chezmoi.osRelease.id "manjaro" -}}
+{{ if $isManjaro -}}
+USE_POWERLINE="true"
+[[ -e /usr/share/zsh/manjaro-zsh-config ]] && source /usr/share/zsh/manjaro-zsh-config
+[[ -e /usr/share/zsh/manjaro-zsh-prompt ]] && source /usr/share/zsh/manjaro-zsh-prompt
+{{ end -}}
+
+# completions
+fpath+=~/.zfunc
+autoload -Uz compinit
+compinit
+
+# history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+
+# aliases
+alias ll='ls -AlFh'
+
+export EDITOR=nvim
+export VISUAL=nvim
+
+# warn about missing programs
+for _tool in keychain nvim; do
+    command -v "$_tool" &>/dev/null || echo "dotfiles: '$_tool' is not installed" >&2
+done
+unset _tool
+
+# keychain: auto-detect private keys that have a matching .pub file
+if command -v keychain &>/dev/null; then
+    _kc_keys=()
+    for _pub in "$HOME/.ssh/"*.pub; do
+        [[ -f "$_pub" ]] || continue
+        [[ -f "${_pub%.pub}" ]] && _kc_keys+=("$(basename "${_pub%.pub}")")
+    done
+    eval "$(keychain --eval "${_kc_keys[@]}")"
+    unset _kc_keys _pub
+fi

@@ -1,0 +1,2 @@
+# zsh login shell — sources shared .profile
+[[ -f "$HOME/.profile" ]] && . "$HOME/.profile"

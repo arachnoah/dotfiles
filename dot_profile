@@ -1,0 +1,7 @@
+# Login shell environment — sourced by both bash (.bash_profile) and zsh (.zprofile)
+
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
