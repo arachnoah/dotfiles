@@ -36,6 +36,10 @@ if command -v keychain &>/dev/null; then
         [[ -f "$_pub" ]] || continue
         [[ -f "${_pub%.pub}" ]] && _kc_keys+=("$(basename "${_pub%.pub}")")
     done
-    eval "$(keychain --eval "${_kc_keys[@]}")"
+    if [[ -z "$SSH_AUTH_SOCK" ]]; then
+        eval "$(keychain --eval "${_kc_keys[@]}")"
+    else
+        keychain "${_kc_keys[@]}"
+    fi
     unset _kc_keys _pub
 fi
