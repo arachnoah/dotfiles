@@ -17,9 +17,9 @@ vim.g.mapleader = " "
 
 vim.opt.number         = true
 vim.opt.relativenumber = true
-vim.opt.tabstop        = 4
-vim.opt.shiftwidth     = 4
-vim.opt.expandtab      = true
+vim.opt.tabstop        = 8
+vim.opt.shiftwidth     = 8
+vim.opt.expandtab      = false
 vim.opt.smartindent    = true
 vim.opt.wrap           = false
 vim.opt.undofile       = true
@@ -33,6 +33,9 @@ vim.opt.colorcolumn    = "100"
 vim.opt.mouse          = "a"
 
 require("lazy").setup({
+    -- auto-detect indentation style (tabs vs spaces, width) from the file
+    { "tpope/vim-sleuth" },
+
     -- accurate per-language syntax highlighting
     {
         "nvim-treesitter/nvim-treesitter",
