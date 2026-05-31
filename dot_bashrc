@@ -80,17 +80,11 @@ for _tool in keychain nvim; do
 done
 unset _tool
 
-# keychain: auto-detect private keys that have a matching .pub file
+# keychain: ensure ssh-agent is running; keys are loaded on first use via AddKeysToAgent
 if command -v keychain &>/dev/null; then
-    _kc_keys=()
-    for _pub in "$HOME/.ssh/"*.pub; do
-        [[ -f "$_pub" ]] || continue
-        [[ -f "${_pub%.pub}" ]] && _kc_keys+=("$(basename "${_pub%.pub}")")
-    done
     if [[ -z "$SSH_AUTH_SOCK" ]]; then
-        eval "$(keychain --eval "${_kc_keys[@]}")"
+        eval "$(keychain --eval)"
     else
-        keychain "${_kc_keys[@]}"
+        keychain
     fi
-    unset _kc_keys _pub
 fi
