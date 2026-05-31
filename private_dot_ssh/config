@@ -1,2 +1,4 @@
+Include config.d/local-keys
+
 Host *
     AddKeysToAgent yes

@@ -80,6 +80,17 @@ for _tool in keychain nvim; do
 done
 unset _tool
 
+# register SSH key pairs as IdentityFile entries (no passphrase needed, loaded on first use)
+_ssh_keys_conf="$HOME/.ssh/config.d/local-keys"
+mkdir -p "$(dirname "$_ssh_keys_conf")"
+: > "$_ssh_keys_conf"
+chmod 600 "$_ssh_keys_conf"
+for _pub in "$HOME/.ssh/"*.pub; do
+    [[ -f "$_pub" ]] || continue
+    [[ -f "${_pub%.pub}" ]] && printf 'IdentityFile %s\n' "${_pub%.pub}" >> "$_ssh_keys_conf"
+done
+unset _ssh_keys_conf _pub
+
 # keychain: ensure ssh-agent is running; keys are loaded on first use via AddKeysToAgent
 if command -v keychain &>/dev/null; then
     if [[ -z "$SSH_AUTH_SOCK" ]]; then
