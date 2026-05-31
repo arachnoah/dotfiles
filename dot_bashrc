@@ -41,6 +41,12 @@ HISTFILESIZE=20000
 
 # aliases
 alias ll='ls -AlFh'
+alias diff='diff --color=auto'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
+alias df='df -h'
+alias free='free -m'
 
 # archive extractor
 ex() {
