@@ -1,0 +1,33 @@
+
+# Title: Summary, imperative, start upper case, don't end with a period
+# No more than 72 chars, if possible less than 50.
+############################# 50 chars is here:  #
+
+# Remember blank line between title and body.
+
+# Body: Explain *what* and *why* (not *how*).
+# Include task/issue ID when applicable.
+# Wrap at 72 chars. ################################## which is here:  #
+
+# Declare when an AI Coding Assistant was used in the commited work:
+# Assisted-by: AGENT_NAME:MODEL_VERSION
+#Assisted-by: Claude:Sonnet-4.6
+
+# At the end: Include Co-authored-by for all contributors. 
+# Include at least one empty line before it. Format: 
+# Co-authored-by: name <user@users.noreply.github.com>
+#
+# How to Write a Git Commit Message:
+# https://chris.beams.io/posts/git-commit/
+#
+# 1. Separate subject from body with a blank line
+# 2. Limit the subject line to 50 characters
+# 3. Capitalize the subject line
+# 4. Do not end the subject line with a period
+# 5. Use the imperative mood in the subject line
+# 6. Wrap the body at 72 characters
+# 7. Use the body to explain what and why vs. how
+#
+# AI Coding Assistants - The Linux Kernel documentation
+# https://docs.kernel.org/process/coding-assistants.html
+

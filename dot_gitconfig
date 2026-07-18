@@ -1,0 +1,5 @@
+[user]
+	email = 50140225+arachnoah@users.noreply.github.com
+	name = arachnoah
+[commit]
+	template = ~/.gitmessage
